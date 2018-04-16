@@ -31,6 +31,11 @@ int relayControl4 = 6;
 
 void setup() {
   Serial.begin(9600);
+  pinMode(relayControl1, OUTPUT);
+  pinMode(relayControl2, OUTPUT);
+  pinMode(relayControl3, OUTPUT);
+  pinMode(relayControl4, OUTPUT);
+  
   digitalWrite(relayControl1, HIGH);
   digitalWrite(relayControl2, HIGH);
   digitalWrite(relayControl3, HIGH);
@@ -63,6 +68,9 @@ void loop() {
   //read Photo pin 
   int lux = analogRead(photoPin);
   
+  digitalWrite(relayControl1, LOW);
+  
+  
   while(!Serial.available()) {
     
 
@@ -74,7 +82,9 @@ void loop() {
     Serial.readBytesUntil('Z', values , 10);
     //readString = values;
   }  
-
+  
+  
+  
   delay(100);
   
   Serial.write("ET=");
